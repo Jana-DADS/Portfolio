@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jana Dolečková — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0F1923;
+      --surface: #162130;
+      --border: #1E3048;
+      --teal: #2DD4BF;
+      --teal-dim: rgba(45, 212, 191, 0.12);
+      --text: #F0F4F8;
+      --muted: #64748B;
+      --card-bg: #162130;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 2.5rem;
+      background: rgba(15, 25, 35, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--teal);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 7rem 2.5rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--muted);
+      margin-bottom: 2rem;
+      min-height: 2em;
+    }
+
+    .hero-subtitle .role {
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    .hero-bio {
+      max-width: 560px;
+      color: #94A3B8;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: #0F1923;
+    }
+    .btn-primary:hover { background: #5eead4; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      color: var(--text);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-3px);
+    }
+
+    .project-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .project-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      color: #94A3B8;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: var(--teal-dim);
+      color: var(--teal);
+      letter-spacing: 0.03em;
+    }
+
+    .project-link {
+      font-size: 0.8rem;
+      color: var(--teal);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-group {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem;
+    }
+
+    .skill-group-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.9rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .skill-list li {
+      font-size: 0.9rem;
+      color: #CBD5E1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-list li.in-progress {
+      color: var(--muted);
+    }
+
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .skill-dot.dim {
+      background: var(--muted);
+    }
+
+    /* CONTACT */
+    .contact-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-text {
+      color: #94A3B8;
+      max-width: 480px;
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* TYPING CURSOR */
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--teal);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .hero { padding: 6rem 1.2rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">JD</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" id="hero">
+    <p class="hero-eyebrow">Portfolio</p>
+    <h1>Jana<br>Dolečková</h1>
+    <p class="hero-subtitle">
+      <span class="role" id="role-text">Data Analyst</span><span class="cursor"></span>
+    </p>
+    <p class="hero-bio">
+      Software developer and project manager with 20+ years of experience, now transitioning into data analytics. Background in C++, SQL, and managing large-scale application implementations for multinational clients. Currently building skills in Python and data visualization.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">View Projects</a>
+      <a class="btn btn-outline" href="https://github.com/Jana-DADS" target="_blank" rel="noopener">GitHub Profile</a>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <a class="project-card" href="https://jana-dads.github.io/mi-vocab/" target="_blank" rel="noopener">
+        <div class="project-icon">🇪🇸</div>
+        <div class="project-title">Mi Vocab</div>
+        <p class="project-desc">Spanish vocabulary learning app for Hungarian and Slovak speakers. 5,000 words with spaced repetition, review scheduling, and level-based filtering. Live on GitHub Pages.</p>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">CSV</span>
+          <span class="tag">GitHub Pages</span>
+        </div>
+        <span class="project-link">→ Open live app</span>
+      </a>
+
+      <a class="project-card" href="https://jana-dads.github.io/french-vocab-data/" target="_blank" rel="noopener">
+
+        <div class="project-icon">🇫🇷</div>
+        <div class="project-title">Mon Vocab</div>
+        <p class="project-desc">French vocabulary learning app with 5,000 curated words, spaced repetition, daily streaks, review stats, and By Level / By Topic filters. Continuously developed since v1.0.</p>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">CSV</span>
+          <span class="tag">GitHub Pages</span>
+        </div>
+        <span class="project-link">→ Open live app</span>
+      </a>
+
+      <a class="project-card" href="https://github.com/Jana-DADS/employee-stability-analysis" target="_blank" rel="noopener">
+        <div class="project-icon">📊</div>
+        <div class="project-title">Employee Stability Analysis</div>
+        <p class="project-desc">Data analysis of why employees aged 55+ are a stable hire — median job tenure by age, education, and country, built from real BLS and Eurostat data with every chart traceable to the query behind it.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Data Analysis</span>
+        </div>
+        <span class="project-link">→ View on GitHub</span>
+      </a>
+
+      <a class="project-card" href="https://github.com/Jana-DADS" target="_blank" rel="noopener">
+        <div class="project-icon">🗄️</div>
+        <div class="project-title">SQL Solutions</div>
+        <p class="project-desc">Collection of SQL queries and data analysis scripts — covering joins, aggregations, window functions, and real-world reporting scenarios from enterprise environments.</p>
+        <div class="project-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Data Analysis</span>
+        </div>
+        <span class="project-link">→ View on GitHub</span>
+      </a>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Toolkit</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title">Data</div>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>SQL</li>
+          <li><span class="skill-dot"></span>Data Analysis</li>
+          <li><span class="skill-dot"></span>Python</li>
+          <li><span class="skill-dot"></span>Data Visualization</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Development</div>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>C++</li>
+          <li><span class="skill-dot"></span>JavaScript</li>
+          <li><span class="skill-dot"></span>React</li>
+          <li><span class="skill-dot"></span>HTML / CSS</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Project Management</div>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>PMP Certified</li>
+          <li><span class="skill-dot"></span>Service Delivery</li>
+          <li><span class="skill-dot"></span>Agile / Waterfall</li>
+          <li><span class="skill-dot"></span>Multinational Teams</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>Czech (native)</li>
+          <li><span class="skill-dot"></span>English (fluent)</li>
+          <li><span class="skill-dot"></span>Slovak</li>
+          <li><span class="skill-dot dim in-progress"></span>Spanish (learning)</li>
+        </ul>
+      </div>
+
+    </div>
+    <p style="margin-top:1.2rem; font-size:0.78rem; color: var(--muted);">
+      <span style="color:#94A3B8;">●</span> active &nbsp;&nbsp;
+      <span style="color:var(--muted);">●</span> in progress
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-block">
+      <p class="contact-text">
+        I'm open to data analytics roles and data-adjacent development projects. Feel free to reach out via GitHub or LinkedIn.
+      </p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="https://github.com/Jana-DADS" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/jana-doleckova/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Jana Dolečková · Built with GitHub Pages
+  </footer>
+
+  <script>
+    // Role typing animation
+    const roles = ['Data Analyst', 'Software Developer', 'Project Manager'];
+    let ri = 0, ci = 0, deleting = false;
+    const el = document.getElementById('role-text');
+
+    function tick() {
+      const word = roles[ri];
+      if (!deleting) {
+        el.textContent = word.slice(0, ci + 1);
+        ci++;
+        if (ci === word.length) {
+          deleting = true;
+          setTimeout(tick, 1800);
+          return;
+        }
+      } else {
+        el.textContent = word.slice(0, ci - 1);
+        ci--;
+        if (ci === 0) {
+          deleting = false;
+          ri = (ri + 1) % roles.length;
+        }
+      }
+      setTimeout(tick, deleting ? 55 : 90);
+    }
+    tick();
+  </script>
+
+</body>
+</html>
