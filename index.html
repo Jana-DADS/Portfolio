@@ -206,6 +206,14 @@
       line-height: 1;
     }
 
+    .project-icon .flag {
+      display: block;
+      height: 1.4rem;
+      width: auto;
+      border-radius: 3px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+
     .project-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
@@ -373,10 +381,10 @@
     <p class="hero-eyebrow">Portfolio</p>
     <h1>Jana<br>Dolečková</h1>
     <p class="hero-subtitle">
-      <span class="role" id="role-text">Data Analyst · Data Scientist</span><span class="cursor"></span>
+      <span class="role" id="role-text">Senior Project Manager</span><span class="cursor"></span>
     </p>
     <p class="hero-bio">
-      Software developer and project manager with 20+ years of experience, now transitioning into data science and analytics. Background in C++, SQL, and managing large-scale application implementations for multinational clients across Europe, Africa, and the Americas. Currently building skills in Python, Pandas, and data visualisation.
+      Senior project manager with a background in software development (C++, SQL). At Accace, I led payroll, accounting, and HR service implementations for multinational clients across Europe, Africa, and North America. At IBM, I managed technical projects for global clients, including the transition of 3,000+ Brno employees from a legacy attendance system to a new one. Trained in data science and analytics with Python, Pandas, and data visualization. I bring together delivery management, technical understanding, and working with data.
     </p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">View Projects</a>
@@ -406,15 +414,27 @@
       </a>
 
       <a class="project-card" href="https://jana-dads.github.io/french-vocab-data/" target="_blank" rel="noopener">
-
-        <div class="project-icon">🇫🇷</div>
+        <div class="project-icon"><svg class="flag" viewBox="0 0 3 2" role="img" aria-label="Flag of France"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#FFFFFF"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg></div>
         <div class="project-title">Mon Vocab</div>
-        <p class="project-desc">French vocabulary learning app with 5,000 curated words, spaced repetition, daily streaks, review stats, and By Level / By Topic filters. Continuously developed since v1.0.</p>
+        <p class="project-desc">French vocabulary app with 5,195 words in two learning orders (by frequency or by CEFR level A1 to C2), with spaced repetition, writing practice, daily streaks, and review stats. Works on phones. The word list is built from open linguistic datasets (Lexique, Wiktionary, Tatoeba, FLELex).</p>
         <div class="project-tags">
           <span class="tag">React</span>
           <span class="tag">JavaScript</span>
-          <span class="tag">CSV</span>
-          <span class="tag">GitHub Pages</span>
+          <span class="tag">Open Data</span>
+          <span class="tag">Mobile</span>
+        </div>
+        <span class="project-link">→ Open live app</span>
+      </a>
+
+      <a class="project-card" href="https://jana-dads.github.io/mein-wortschatz/" target="_blank" rel="noopener">
+        <div class="project-icon"><svg class="flag" viewBox="0 0 5 3" role="img" aria-label="Flag of Germany"><rect width="5" height="1" fill="#000000"/><rect y="1" width="5" height="1" fill="#DD0000"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg></div>
+        <div class="project-title">Mein Wortschatz</div>
+        <p class="project-desc">German vocabulary app with 5,112 words ordered by CEFR level (A1 to B2) and by frequency, ranked from combined film subtitle and news corpora and Goethe-Institut level lists. Typing practice checks capital letters and articles, and the app works on phones. Shares Mon Vocab's features, including streaks and review stats.</p>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Open Data</span>
+          <span class="tag">Mobile</span>
         </div>
         <span class="project-link">→ Open live app</span>
       </a>
@@ -530,7 +550,7 @@
     <h2 class="section-title">Contact</h2>
     <div class="contact-block">
       <p class="contact-text">
-        I'm open to data analyst and data scientist roles. Feel free to reach out.
+        I'm open to roles in project management, data analytics, and data science. Feel free to reach out.
       </p>
       <div class="contact-links">
         <a class="btn btn-primary" href="mailto:jana.doleckova@centrum.cz">jana.doleckova@centrum.cz</a>
@@ -547,7 +567,7 @@
 
   <script>
     // Role typing animation
-    const roles = ['Data Analyst · Data Scientist', 'Software Developer', 'Project Manager'];
+    const roles = ['Senior Project Manager', 'Data Analyst · Data Scientist'];
     let ri = 0, ci = 0, deleting = false;
     const el = document.getElementById('role-text');
 
